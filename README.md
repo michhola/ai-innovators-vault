@@ -43,6 +43,7 @@ Gmail's security settings require an "App Password" for applications to send ema
 
 If you're having issues with sending emails:
 
+
 1. Make sure 2-Step Verification is enabled on your Google account
 2. Verify you've generated an App Password correctly
 3. Check that the EMAIL_PASSWORD in your .env file matches the generated App Password
@@ -68,3 +69,4 @@ If you want to test the email functionality without setting up Gmail:
 
 1. You can use a service like Ethereal (https://ethereal.email/) for testing
 2. Or use Mailtrap (https://mailtrap.io/) for a more robust testing solution
+trigger: rebuild Cloudflare Pages
