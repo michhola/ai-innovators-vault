@@ -1,0 +1,114 @@
+/* Dark mode customizations */
+[data-theme="dark"] {
+  /* Background colors */
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-tertiary: #334155;
+  
+  /* Text colors */
+  --text-primary: #E2E8F0;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  
+  /* Brand colors in dark mode */
+  --brand-primary: #3B82F6;
+  --brand-primary-hover: #60A5FA;
+  --brand-secondary: #60A5FA;
+  --brand-accent: #0EA5E9;
+  
+  /* UI elements */
+  --card-bg: #1E293B;
+  --border-color: #334155;
+  --hover-bg: #334155;
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .bg-[#EBFCFF] {
+  background-color: var(--bg-tertiary) !important;
+}
+
+[data-theme="dark"] .bg-[#EBFCFF]/30 {
+  background-color: rgba(30, 41, 59, 0.5) !important;
+}
+
+[data-theme="dark"] .text-[#0F214D] {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-[#0B5FB0] {
+  color: var(--brand-primary) !important;
+}
+
+[data-theme="dark"] .text-[#2BA3EC] {
+  color: var(--brand-secondary) !important;
+}
+
+[data-theme="dark"] .border-[#AAF1FF] {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .bg-[#0B5FB0] {
+  background-color: var(--brand-primary) !important;
+}
+
+[data-theme="dark"] .hover\:bg-[#2BA3EC]:hover {
+  background-color: var(--brand-primary-hover) !important;
+}
+
+[data-theme="dark"] .from-[#EBFCFF] {
+  --tw-gradient-from: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .to-white {
+  --tw-gradient-to: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] .from-[#EBFCFF]/90 {
+  --tw-gradient-from: rgba(30, 41, 59, 0.9) !important;
+}
+
+[data-theme="dark"] .to-white\/90 {
+  --tw-gradient-to: rgba(15, 23, 42, 0.9) !important;
+}
+
+/* Footer dark mode */
+[data-theme="dark"] footer.bg-[#0F214D] {
+  background-color: #0a0f1a !important;
+}
+
+[data-theme="dark"] .bg-gray-700 {
+  background-color: #1E293B !important;
+}
+
+[data-theme="dark"] .text-gray-400 {
+  color: #94A3B8 !important;
+}
+
+[data-theme="dark"] .text-gray-300 {
+  color: #CBD5E1 !important;
+}
+
+/* Legal section dark mode */
+[data-theme="dark"] section.bg-[#0a1a3d] {
+  background-color: #050914 !important;
+}
+
+/* Dark mode for interactive elements */
+[data-theme="dark"] button:focus,
+[data-theme="dark"] a:focus {
+  outline-color: var(--brand-primary);
+}
+
+/* Calendar container in dark mode */
+[data-theme="dark"] iframe[src*="calendar.google.com"] {
+  filter: invert(90%) hue-rotate(180deg);
+}

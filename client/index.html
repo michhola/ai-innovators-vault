@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0F214D" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a1a3d" />
+    <link rel="preconnect" href="https://lh3.googleusercontent.com" />
+    <link rel="preconnect" href="https://calendar.google.com" crossorigin />
+    <meta name="description" content="AI Innovators Vault - AI Automation & Consultancy Agency providing cutting-edge AI solutions for business growth." />
+    <meta name="keywords" content="AI automation, business AI, workflow automation, AI consulting, chatbots, RAG, analytics, fine-tuning, employee enablement, AI agency, AI workflow optimization" />
+    <meta name="contact" content="Email: ai.innovators.vault@gmail.com | Phone: +27 603335261" />
+    <meta name="color-scheme" content="light dark" />
+    <meta http-equiv="Content-Security-Policy" content="frame-src https://calendar.google.com https://*.n8n.cloud 'self'; connect-src https://calendar.google.com https://*.n8n.cloud https://*.jsdelivr.net 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; form-action 'self' https://*.n8n.cloud">
+    <title>AI Innovators Vault | AI Automation & Consultancy</title>
+    <style>
+      /* Ensure the n8n form iframe is properly styled */
+      iframe[src*="aivault.app.n8n.cloud/form"] {
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+        overflow: hidden !important;
+      }
+      
+      /* Direct inline wiggle animation for chat button */
+      @keyframes wiggleChatButton {
+        0% { transform: rotate(0deg); }
+        15% { transform: rotate(-15deg); }
+        30% { transform: rotate(10deg); }
+        45% { transform: rotate(-10deg); }
+        60% { transform: rotate(6deg); }
+        75% { transform: rotate(-4deg); }
+        85% { transform: rotate(2deg); }
+        92% { transform: rotate(-1deg); }
+        100% { transform: rotate(0deg); }
+      }
+      .wiggle-chat-button {
+        animation: wiggleChatButton 0.8s ease-in-out !important;
+      }
+      
+      /* Initial theme detection */
+      :root {
+        color-scheme: light dark;
+      }
+    </style>
+    
+    <!-- Dark mode detection script -->
+    <script>
+      (function() {
+        function setInitialTheme() {
+          // Check if theme already stored
+          const storedTheme = localStorage.getItem('theme');
+          if (storedTheme) {
+            document.documentElement.setAttribute('data-theme', storedTheme);
+            return;
+          }
+          
+          // Check time of day (after 6 PM = dark mode)
+          const hour = new Date().getHours();
+          if (hour >= 18 || hour < 6) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+          
+          // Also check user preference
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        }
+        
+        // Run theme detection
+        setInitialTheme();
+      })();
+    </script>
+    
+    <!-- n8n Chat widget styles -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    
+    <!-- Preload the chat wiggle scripts -->
+    <link rel="preload" href="/wiggle-chat.js" as="script" />
+    <link rel="preload" href="/chat-wiggle-worker.js" as="script" />
+  </head>
+  <body>
+    <div id="root" class="contents"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Direct wiggle script -->
+    <script>
+      // Simple wiggle script that runs directly on page load
+      (function() {
+        function wiggleChatButton() {
+          const chatBtn = document.querySelector('.n8n-chat__toggle-button');
+          if (chatBtn && !document.querySelector('.n8n-chat__window--open')) {
+            chatBtn.classList.remove('wiggle-chat-button');
+            void chatBtn.offsetWidth;
+            chatBtn.classList.add('wiggle-chat-button');
+          }
+        }
+        
+        function setupChatButtonWiggle() {
+          if (document.querySelector('.n8n-chat__toggle-button')) {
+            // Initial wiggle
+            wiggleChatButton();
+            // Repeated wiggle
+            setInterval(wiggleChatButton, 10000);
+            return true;
+          }
+          return false;
+        }
+        
+        // Try to find the button repeatedly with increasing intervals
+        let attempt = 0;
+        function findButton() {
+          if (!setupChatButtonWiggle() && attempt < 20) {
+            attempt++;
+            setTimeout(findButton, 500 * attempt);
+          }
+        }
+        
+        // Start immediately
+        findButton();
+        
+        // Also try after page load
+        window.addEventListener('load', findButton);
+        
+        // And after a few seconds as a fallback
+        setTimeout(findButton, 3000);
+        setTimeout(findButton, 5000);
+      })();
+    </script>
+    
+    <!-- n8n Chat widget -->
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      
+      try {
+        createChat({
+          webhookUrl: 'https://aivault.app.n8n.cloud/webhook/c9264c45-c6a6-42f3-823a-20429baa88af/chat',
+          mode: 'window', // 'window' or 'fullscreen'
+          showWelcomeScreen: true,
+          initialMessages: [
+            'Hi there! 👋',
+            'How can I help you today?'
+          ],
+          webhookConfig: {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+              'Origin': window.location.origin,
+              'Accept': 'application/json'
+            },
+            mode: 'cors'
+          },
+          showBranding: false, // Disable the branding
+          footer: {
+            showBranding: false, // Disable branding in the footer
+            text: '', // Empty text in footer
+            showInstanceLink: false // Disable instance link
+          },
+          instanceLinkProps: {
+            disabled: true, // Completely disable instance link
+            text: '' // Empty instance text
+          }
+        });
+        console.log('Chat widget initialized successfully');
+      } catch (err) {
+        console.error('Error initializing chat widget:', err);
+      }
+
+      // Log any fetch errors for debugging
+      window.addEventListener('unhandledrejection', (event) => {
+        if (event.reason && event.reason.name === 'TypeError' && event.reason.message && event.reason.message.includes('Failed to fetch')) {
+          console.error('n8n Chat error:', event.reason);
+        }
+      });
+      
+      // Load multiple custom scripts for chat wiggle animation to ensure it works
+      document.addEventListener('DOMContentLoaded', function() {
+        // Load both wiggle scripts
+        try {
+          const wiggleScript = document.createElement('script');
+          wiggleScript.src = '/wiggle-chat.js';
+          wiggleScript.async = true;
+          document.body.appendChild(wiggleScript);
+          
+          const workerScript = document.createElement('script');
+          workerScript.src = '/chat-wiggle-worker.js';
+          workerScript.async = true;
+          document.body.appendChild(workerScript);
+          
+          // Also set up a direct interval to try wiggling
+          setInterval(function() {
+            const btn = document.querySelector('.n8n-chat__toggle-button');
+            if (btn && !document.querySelector('.n8n-chat__window--open')) {
+              btn.classList.remove('wiggle-chat-button');
+              void btn.offsetWidth;
+              btn.classList.add('wiggle-chat-button');
+            }
+          }, 10000);
+        } catch (err) {
+          console.error('Error loading wiggle scripts:', err);
+        }
+      });
+      
+      // Enhanced branding removal
+      const removeBranding = () => {
+        try {
+          // Remove all branding elements using various selectors
+          const selectors = [
+            '.n8n-chat__footer > *:last-child', 
+            '.n8n-chat__instance', 
+            '.n8n-chat__built-with',
+            '.n8n-chat__footer-branding',
+            '.n8n-chat__instance-container',
+            '.n8n-chat__footer-text',
+            '.n8n-chat__footer-link',
+            '.n8n-chat__instance-button',
+            '.n8n-chat__footer a[href*="n8n.io"]',
+            '.n8n-chat__footer a[target="_blank"]'
+          ];
+          
+          selectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+              if (el) el.remove();
+            });
+          });
+          
+          // Also add CSS to hide branding
+          const style = document.createElement('style');
+          style.textContent = `
+            .n8n-chat__instance,
+            .n8n-chat__footer-branding,
+            .n8n-chat__built-with,
+            .n8n-chat__instance-container,
+            .n8n-chat__footer-text,
+            .n8n-chat__footer-link,
+            .n8n-chat__instance-button,
+            .n8n-chat__footer a[href*="n8n.io"],
+            .n8n-chat__footer a[target="_blank"],
+            .n8n-chat__footer > div:last-child {
+              display: none !important;
+              visibility: hidden !important;
+              opacity: 0 !important;
+              height: 0 !important;
+              width: 0 !important;
+              pointer-events: none !important;
+            }
+          `;
+          document.head.appendChild(style);
+        } catch (err) {
+          console.error('Error removing branding:', err);
+        }
+      };
+      
+      // Run once on load
+      document.addEventListener('DOMContentLoaded', () => {
+        // Run immediately
+        removeBranding();
+        
+        // Also run after a delay to catch late-rendered elements
+        setTimeout(removeBranding, 1000);
+        setTimeout(removeBranding, 2000);
+        
+        // Set up a mutation observer to catch dynamically added elements
+        try {
+          const observer = new MutationObserver(mutations => {
+            for (const mutation of mutations) {
+              if (mutation.addedNodes.length) {
+                removeBranding();
+              }
+            }
+          });
+          
+          // Start observing once the chat container exists
+          setTimeout(() => {
+            const chatContainer = document.querySelector('.n8n-chat__container');
+            if (chatContainer) {
+              observer.observe(chatContainer, { childList: true, subtree: true });
+            }
+          }, 1500);
+        } catch (err) {
+          console.error('Error setting up mutation observer:', err);
+        }
+      });
+    </script>
+    <!-- /n8n Chat widget -->
+  </body>
+</html>

@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Custom theme colors */
+    --theme-background: white;
+    --theme-foreground: #0F214D;
+    --theme-primary: #0B5FB0;
+    --theme-primary-hover: #2BA3EC;
+    --theme-secondary: #EBFCFF;
+    --theme-muted: #AAF1FF;
+    --theme-paper: white;
+    --theme-border: #AAF1FF;
+    
+    /* n8n Chat customization */
+    --chat--color-primary: #0B5FB0;
+    --chat--color-primary-shade-50: #0c54a0;
+    --chat--color-primary-shade-100: #0a4c8f;
+    --chat--color-secondary: #2BA3EC;
+    --chat--color-secondary-shade-50: #2698db;
+    --chat--color-white: #ffffff;
+    --chat--color-light: #EBFCFF;
+    --chat--color-light-shade-50: #e6e9f1;
+    --chat--color-light-shade-100: #c2c5cc;
+    --chat--color-medium: #d2d4d9;
+    --chat--color-dark: #0F214D;
+    --chat--color-disabled: #777980;
+    --chat--color-typing: #404040;
+    
+    --chat--toggle--background: #0B5FB0;
+    --chat--toggle--hover--background: #0c54a0;
+    --chat--toggle--active--background: #0a4c8f;
+    --chat--message--user--background: #0B5FB0;
+    --chat--header--background: #0F214D;
+    --chat--border-radius: 0.5rem;
+    
+    --chat--textarea--height: 50px;
+    
+    /* Chat wiggle animation */
+    --chat-wiggle-animation-duration: 0.8s;
+  }
+  
+  [data-theme="dark"] {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    
+    /* Custom theme colors for dark mode */
+    --theme-background: #0F172A;
+    --theme-foreground: #E2E8F0;
+    --theme-primary: #3B82F6;
+    --theme-primary-hover: #60A5FA;
+    --theme-secondary: #1E293B;
+    --theme-muted: #334155;
+    --theme-paper: #1E293B;
+    --theme-border: #334155;
+    
+    /* Dark mode chat customization */
+    --chat--color-primary: #3B82F6;
+    --chat--color-primary-shade-50: #2563EB;
+    --chat--color-primary-shade-100: #1D4ED8;
+    --chat--color-secondary: #60A5FA;
+    --chat--color-secondary-shade-50: #3B82F6;
+    --chat--color-white: #1E293B;
+    --chat--color-light: #0F172A;
+    --chat--color-light-shade-50: #1E293B;
+    --chat--color-light-shade-100: #334155;
+    --chat--color-medium: #475569;
+    --chat--color-dark: #E2E8F0;
+    --chat--color-disabled: #64748B;
+    --chat--color-typing: #CBD5E1;
+    
+    --chat--toggle--background: #3B82F6;
+    --chat--toggle--hover--background: #2563EB;
+    --chat--toggle--active--background: #1D4ED8;
+    --chat--message--user--background: #3B82F6;
+    --chat--header--background: #0F172A;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto px-2 sm:px-4 lg:px-8 max-w-7xl;
+  }
+  
+  .clip-path-contact {
+    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+@layer utilities {
+  .opacity-15 {
+    opacity: 0.15;
+  }
+}
+
+/* Fix for n8n Chat input */
+.n8n-chat__input-wrapper textarea {
+  min-height: 50px !important;
+  display: block !important;
+}
+
+.n8n-chat__message-container {
+  z-index: 1000;
+}
+
+.n8n-chat__footer {
+  padding-bottom: 10px;
+}
+
+/* Style the n8n chat toggle button */
+.n8n-chat__toggle-button {
+  transition: transform 0.3s ease !important;
+  transform-origin: center center !important;
+  box-shadow: 0 3px 10px rgba(11, 95, 176, 0.3) !important;
+}
+
+/* Wiggle animation for chat button */
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(-15deg); }
+  30% { transform: rotate(10deg); }
+  45% { transform: rotate(-10deg); }
+  60% { transform: rotate(6deg); }
+  75% { transform: rotate(-4deg); }
+  85% { transform: rotate(2deg); }
+  92% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.wiggle-animation, .wiggle-chat {
+  animation: wiggle 0.8s ease-in-out !important;
+}
+
+/* Force the chat button to be visible and apply styles directly */
+.n8n-chat__toggle-button {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 25px !important;
+  background-color: #0B5FB0 !important;
+  box-shadow: 0 4px 12px rgba(11, 95, 176, 0.4) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Make the chat window responsive and position it in the left side */
+@media (max-width: 768px) {
+  .n8n-chat__window {
+    width: 90vw !important;
+    max-width: 400px !important;
+    height: 75vh !important;
+    max-height: 650px !important;
+    left: 20px !important;
+    right: auto !important;
+  }
+}
+
+/* Position the chat window properly when open */
+.n8n-chat__window {
+  left: 20px !important;
+  right: auto !important;
+}
+
+/* Hide the n8n "built with instance" button and all footer branding */
+.n8n-chat__instance,
+.n8n-chat__footer-branding,
+.n8n-chat__built-with,
+.n8n-chat__instance-container,
+.n8n-chat__footer-text,
+.n8n-chat__footer-link,
+.n8n-chat__instance-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* Hide any footer branding with different selectors */
+.n8n-chat__footer a[href*="n8n.io"],
+.n8n-chat__footer a[target="_blank"],
+.n8n-chat__footer > div:last-child,
+.n8n-chat__footer > *:last-child,
+[class*="branding"],
+[class*="instance"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+}
+
+/* Ensure the footer padding is minimal without the branding */
+.n8n-chat__footer {
+  padding-bottom: 5px !important;
+  min-height: auto !important;
+  border-top: none !important;
+}
+
+/* Contact bubble styling */
+.contact-bubble-container {
+  z-index: 9999 !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  display: block !important;
+}
+
+/* Custom pulse animation for the contact bubble */
+@keyframes contact-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(11, 95, 176, 0.6);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(11, 95, 176, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(11, 95, 176, 0);
+    transform: scale(1);
+  }
+}
+
+/* Apply the animation to the contact button */
+.animate-contact-pulse {
+  animation: contact-pulse 2s infinite;
+}
+
+/* Styling for Google Calendar iframe */
+iframe[src*="calendar.google.com"] {
+  border: none !important;
+  width: 100% !important;
+  overflow: visible !important;
+  background-color: transparent !important;
+  min-height: 650px !important;
+}
+
+/* Make the calendar iframe responsive */
+@media (max-width: 768px) {
+  iframe[src*="calendar.google.com"] {
+    min-height: 700px !important;
+  }
+}
+
+/* n8n form iframe styling */
+iframe[src*="aivault.app.n8n.cloud/form"] {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background-color: white !important;
+}
+
+/* Modal backdrop animation */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.contact-form-modal-backdrop {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* Modal content animation */
+@keyframes slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.contact-form-modal-content {
+  animation: slide-up 0.3s ease-out;
+}
+
+
+/* Style for the form container */
+.form-container {
+  position: relative !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+/* Styling for n8n form iframe */
+.form-container iframe {
+  width: 100% !important;
+  border: none !important;
+  min-height: 650px !important;
+  background-color: transparent !important;
+}
+
+@media (max-width: 768px) {
+  .form-container iframe {
+    min-height: 750px !important;
+  }
+}
+
+/* Alternative contact form styling */
+.form-container .border {
+  transition: all 0.3s ease;
+}
+
+.form-container .border:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+
