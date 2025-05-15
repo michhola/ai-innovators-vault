@@ -70,3 +70,4 @@ If you want to test the email functionality without setting up Gmail:
 1. You can use a service like Ethereal (https://ethereal.email/) for testing
 2. Or use Mailtrap (https://mailtrap.io/) for a more robust testing solution
 trigger: rebuild Cloudflare Pages
+trigger: rebuild Cloudflare Pages again
